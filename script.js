@@ -12,14 +12,6 @@ btn.addEventListener("click", function(event) {
     var dob = document.getElementById("dob").value; 
     var doj = document.getElementById("doj").value; 
 
-    // var area = document.createElement('textarea');
-    // area.textContent = 
-    // `Name: ${firstName} ${lastName}
-    // DOB: ${dob}
-    // DOJ: ${doj}` 
-    // ;
-    // container.appendChild(area); 
-
     //create new row
     const newRow = document.createElement('tr');
     //create new cell elements 
@@ -46,34 +38,34 @@ btn.addEventListener("click", function(event) {
     editButton.textContent = 'Edit';
     newRow.appendChild(editButton);
 
-    const saveButton = document.createElement('button');
-    saveButton.textContent = 'Save';
-    newRow.appendChild(saveButton);
-
-    deleteButton.addEventListener ("click", function(event){
-        event.preventDefault(); 
-        container.removeChild(area); 
-        container.removeChild(deleteBtn); 
-        container.removeChild(editButton); 
-        container.removeChild(saveButton); 
-        
-    });
-
-    editButton.addEventListener('click', function(event) {
-        event.preventDefault(); 
-        // Enable the textarea for editing
-        area.removeAttribute('readonly');
-      });
-
-    saveButton.addEventListener('click', function(event) {
-        event.preventDefault(); 
-        // Disable the textarea for editing
-        area.setAttribute('readonly', true); 
-      });
-    
     // Append the new row to the table body
     table.querySelector('tbody').appendChild(newRow);
 
+    // delete button
+    deleteButton.addEventListener ("click", function(event){
+        event.preventDefault(); 
+        table.querySelector('tbody').removeChild(newRow);
+    });
+
+    //edit button 
+    editButton.addEventListener ("click", function(event) {
+        const row = editButton.parentNode.parentNode; 
+        //get values from cells // store in variables
+        const a = row.querySelector('td:nth-child(1)').textContent; 
+        const b = row.querySelector('td:nth-child(2)').textContent; 
+        const c = row.querySelector('td:nth-child(3)').textContent;
+        const d = row.querySelector('td:nth-child(4)').textContent;
+        // prompt user with what they would like to edit 
+        const newA = prompt('Edit first name: ', a); 
+        const newB = prompt ('Edit last name: ', b); 
+        const newC = prompt('Edit DOB: ', c); 
+        const newD = prompt ('Edit DOJ: ', d); 
+        // Update the cells in the row with the new values
+        row.querySelector('td:nth-child(1)').textContent = newA;
+        row.querySelector('td:nth-child(2)').textContent = newB;
+        row.querySelector('td:nth-child(3)').textContent = newC;
+        row.querySelector('td:nth-child(4)').textContent = newD;
+    } )
 
 });
 
