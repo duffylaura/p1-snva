@@ -21,6 +21,8 @@ btn.addEventListener("click", function(event) {
     const lastNameCell = document.createElement('td'); 
     const dobCell = document.createElement('td'); 
     const dojCell = document.createElement('td');
+    const deleteCell = document.createElement('td'); 
+    const editCell = document.createElement('td'); 
     
     firstNameCell.textContent = firstName; 
     lastNameCell.textContent = lastName; 
@@ -31,18 +33,22 @@ btn.addEventListener("click", function(event) {
     newRow.appendChild(lastNameCell); 
     newRow.appendChild(dobCell); 
     newRow.appendChild(dojCell); 
+    newRow.appendChild(deleteCell);
+    newRow.appendChild(editCell); 
 
     const deleteButton = document.createElement('button'); 
     deleteButton.classList.add('btn');
+    deleteButton.classList.add('btn-small');
     deleteButton.classList.add('delete-btn');
     deleteButton.textContent = 'Delete'; 
-    newRow.appendChild(deleteButton); 
+    deleteCell.appendChild(deleteButton); 
 
     const editButton = document.createElement('button');
     editButton.classList.add('btn');
+    editButton.classList.add('btn-small');
     editButton.classList.add('edit-btn');
     editButton.textContent = 'Edit';
-    newRow.appendChild(editButton);
+    editCell.appendChild(editButton);
 
     // Append the new row to the table body
     table.querySelector('tbody').appendChild(newRow);
