@@ -12,6 +12,8 @@ btn.addEventListener("click", function(event) {
     var dob = document.getElementById("dob").value; 
     var doj = document.getElementById("doj").value; 
 
+    //validate dates
+    if (isValidDate(dob) && isValidDate(doj)) {
     //create new row
     const newRow = document.createElement('tr');
     //create new cell elements 
@@ -60,12 +62,41 @@ btn.addEventListener("click", function(event) {
         const newB = prompt ('Edit last name: ', b); 
         const newC = prompt('Edit DOB: ', c); 
         const newD = prompt ('Edit DOJ: ', d); 
+        //Validate dates 
+        if (isValidDate(newC) && isValidDate(newD)) {
         // Update the cells in the row with the new values
         row.querySelector('td:nth-child(1)').textContent = newA;
         row.querySelector('td:nth-child(2)').textContent = newB;
         row.querySelector('td:nth-child(3)').textContent = newC;
         row.querySelector('td:nth-child(4)').textContent = newD;
+        } else {
+            alert('Please edit your dates in the following format MM/DD/YYYY')
+        }
     } )
-
+} else {
+    alert('Please enter a valid DOB and/or DOJ date!')
+}
 });
+
+function isValidDate(dateString) {
+    // regular expression to match mm/dd/yyyy format
+    var regex = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
+    if (!regex.test(dateString)) {
+      return false; // format is invalid
+    }
+    var parts = dateString.split('/');
+    var month = parseInt(parts[0], 10);
+    var day = parseInt(parts[1], 10);
+    var year = parseInt(parts[2], 10);
+    if (month < 1 || month > 12) {
+      return false; // month is invalid
+    }
+    if (day < 1 || day > 31) {
+      return false; // day is invalid
+    }
+    if (year < 1900 || year > new Date().getFullYear()) {
+      return false; // year is invalid
+    }
+    return true;
+};
 
