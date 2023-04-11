@@ -1,9 +1,6 @@
-// FIRST write code to dynamically add HTML elements 
-// THEN add to local storage 
-// (See scrap.js for original idea)
+// Wants table not text areas 
 
-//const list = document.getElementById("list");
-const container = document.getElementById("container"); 
+const table = document.getElementById("table"); 
 const btn = document.getElementById("btn");
 
 
@@ -15,27 +12,45 @@ btn.addEventListener("click", function(event) {
     var dob = document.getElementById("dob").value; 
     var doj = document.getElementById("doj").value; 
 
-    var area = document.createElement('textarea');
-    area.textContent = 
-    `Name: ${firstName} ${lastName}
-    DOB: ${dob}
-    DOJ: ${doj}` 
-    ;
-    container.appendChild(area); 
+    // var area = document.createElement('textarea');
+    // area.textContent = 
+    // `Name: ${firstName} ${lastName}
+    // DOB: ${dob}
+    // DOJ: ${doj}` 
+    // ;
+    // container.appendChild(area); 
 
-    const deleteBtn = document.createElement('button'); 
-    deleteBtn.textContent = 'Delete'; 
-    container.appendChild(deleteBtn); 
+    //create new row
+    const newRow = document.createElement('tr');
+    //create new cell elements 
+    const firstNameCell = document.createElement('td'); 
+    const lastNameCell = document.createElement('td'); 
+    const dobCell = document.createElement('td'); 
+    const dojCell = document.createElement('td');
+    
+    firstNameCell.textContent = firstName; 
+    lastNameCell.textContent = lastName; 
+    dobCell.textContent = dob; 
+    dojCell.textContent = doj; 
+
+    newRow.appendChild(firstNameCell); 
+    newRow.appendChild(lastNameCell); 
+    newRow.appendChild(dobCell); 
+    newRow.appendChild(dojCell); 
+
+    const deleteButton = document.createElement('button'); 
+    deleteButton.textContent = 'Delete'; 
+    newRow.appendChild(deleteButton); 
 
     const editButton = document.createElement('button');
     editButton.textContent = 'Edit';
-    container.appendChild(editButton);
+    newRow.appendChild(editButton);
 
     const saveButton = document.createElement('button');
     saveButton.textContent = 'Save';
-    container.appendChild(saveButton);
+    newRow.appendChild(saveButton);
 
-    deleteBtn.addEventListener ("click", function(event){
+    deleteButton.addEventListener ("click", function(event){
         event.preventDefault(); 
         container.removeChild(area); 
         container.removeChild(deleteBtn); 
@@ -55,6 +70,9 @@ btn.addEventListener("click", function(event) {
         // Disable the textarea for editing
         area.setAttribute('readonly', true); 
       });
+    
+    // Append the new row to the table body
+    table.querySelector('tbody').appendChild(newRow);
 
 
 });

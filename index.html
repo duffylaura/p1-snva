@@ -5,29 +5,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link
+        rel = "stylesheet"
+        href = "style.css"
+    />
 </head>
 
 <body>
     <h1>Personal Details Form</h1>
     <form>
         <label> First Name: </label>
-        <input type = "text" id = "first-name">
+        <input type = "text" id = "first-name" required>
 
         <label> Last Name: </label>
-        <input type = "text" id = "last-name">
+        <input type = "text" id = "last-name" required>
 
         <label> DOB: </label>
-        <input type = "text" id = "dob">
+        <input type = "text" id = "dob" required>
 
         <label> DOJ: </label>
-        <input type = "text" id = "doj">
+        <input type = "text" id = "doj" required>
 
         <button type = "submit" id = "btn"> Save. </button>
     </form>
 
     <div>
         <h1> Saved Details </h1>
-        <div id = "container"> </div>
+        <table id = "table"> 
+            <thread>
+                <tr>
+                    <th> First name </th>
+                    <th> Last name </th>
+                    <th> DOB </th>
+                    <th> DOJ </th>
+                </tr>
+            </thread>
+            <tbody>
+
+            </tbody>
+        </table>
 
     </div>
 </body>
