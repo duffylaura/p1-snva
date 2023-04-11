@@ -23,7 +23,6 @@ btn.addEventListener("click", function(event) {
     const dojCell = document.createElement('td');
     const deleteCell = document.createElement('td'); 
     const editCell = document.createElement('td'); 
-    const saveCell = document.createElement('td');
     
     firstNameCell.textContent = firstName; 
     lastNameCell.textContent = lastName; 
@@ -36,7 +35,6 @@ btn.addEventListener("click", function(event) {
     newRow.appendChild(dojCell); 
     newRow.appendChild(deleteCell);
     newRow.appendChild(editCell); 
-    newRow.appendChild(saveCell); 
 
     const deleteButton = document.createElement('button'); 
     deleteButton.classList.add('btn');
@@ -52,13 +50,6 @@ btn.addEventListener("click", function(event) {
     editButton.textContent = 'Edit';
     editCell.appendChild(editButton);
 
-    const saveButton = document.createElement('button'); 
-    saveButton.classList.add('btn');
-    saveButton.classList.add('btn-small');
-    saveButton.classList.add('save-btn');
-    saveButton.textContent = 'Save';
-    saveCell.appendChild(saveButton);
-
     // Append the new row to the table body
     table.querySelector('tbody').appendChild(newRow);
 
@@ -72,30 +63,32 @@ btn.addEventListener("click", function(event) {
     editButton.addEventListener ("click", function(event) {
         const row = editButton.parentNode.parentNode; 
         //get values from cells // store in variables
-        const a = row.querySelector('td:nth-child(1)'); 
-        const b = row.querySelector('td:nth-child(2)'); 
-        const c = row.querySelector('td:nth-child(3)');
-        const d = row.querySelector('td:nth-child(4)');
-        a.contentEditable = true;
-        b.contentEditable = true;
-        c.contentEditable = true;
-        d.contentEditable = true;
+        const a = row.querySelector('td:nth-child(1)').textContent; 
+        const b = row.querySelector('td:nth-child(2)').textContent; 
+        const c = row.querySelector('td:nth-child(3)').textContent;
+        const d = row.querySelector('td:nth-child(4)').textContent;
+        // prompt user with what they would like to edit 
+        const newA = prompt('Edit first name: ', a); 
+        const newB = prompt ('Edit last name: ', b); 
+        const newC = prompt('Edit DOB: ', c); 
+        const newD = prompt ('Edit DOJ: ', d); 
+        //Validate dates 
+        if (isValidDate(newC) && isValidDate(newD)) {
+          if (newA !== null && newB !== null) {
+          // Update the cells in the row with the new values
+          row.querySelector('td:nth-child(1)').textContent = newA;
+          row.querySelector('td:nth-child(2)').textContent = newB;
+          row.querySelector('td:nth-child(3)').textContent = newC;
+          row.querySelector('td:nth-child(4)').textContent = newD;
+          } else {
+            alert('Name cannot be blank.')
+          }
+        } else {
+            alert('Please edit your dates in the following format MM/DD/YYYY')
+        }
     } )
-
-    saveButton.addEventListener("click", function(event) {
-      const row = editButton.parentNode.parentNode; 
-      //get values from cells // store in variables
-      const a = row.querySelector('td:nth-child(1)'); 
-      const b = row.querySelector('td:nth-child(2)'); 
-      const c = row.querySelector('td:nth-child(3)');
-      const d = row.querySelector('td:nth-child(4)');
-      a.contentEditable = false;
-      b.contentEditable = false;
-      c.contentEditable = false;
-      d.contentEditable = false;     
-    })
 } else {
-    alert('Names cannot be null and dates must be in MM/DD/YYYY format.') //from initial form fill out
+    alert('Names cannot be null and dates must be in MM/DD/YYYY format.')
 }
 });
 
