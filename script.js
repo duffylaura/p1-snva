@@ -27,11 +27,34 @@ btn.addEventListener("click", function(event) {
     deleteBtn.textContent = 'Delete'; 
     container.appendChild(deleteBtn); 
 
+    const editButton = document.createElement('button');
+    editButton.textContent = 'Edit';
+    container.appendChild(editButton);
+
+    const saveButton = document.createElement('button');
+    saveButton.textContent = 'Save';
+    container.appendChild(saveButton);
+
     deleteBtn.addEventListener ("click", function(event){
         event.preventDefault(); 
         container.removeChild(area); 
         container.removeChild(deleteBtn); 
-    })
+        container.removeChild(editButton); 
+        container.removeChild(saveButton); 
+        
+    });
+
+    editButton.addEventListener('click', function(event) {
+        event.preventDefault(); 
+        // Enable the textarea for editing
+        area.removeAttribute('readonly');
+      });
+
+    saveButton.addEventListener('click', function(event) {
+        event.preventDefault(); 
+        // Disable the textarea for editing
+        area.setAttribute('readonly', true); 
+      });
 
 
 });
