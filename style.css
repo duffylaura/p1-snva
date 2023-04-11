@@ -9,6 +9,7 @@ th, td {
 
 .save-btn {
     background-color: #DE8264;
+    margin-bottom: 7px; 
 }
 
 .delete-btn {
