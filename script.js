@@ -3,6 +3,10 @@
 const table = document.getElementById("table"); 
 const btn = document.getElementById("btn");
 
+$( function() {
+  $( "#dob" ).datepicker();
+  $("#doj").datepicker(); 
+} );
 
 btn.addEventListener("click", function(event) {
     event.preventDefault(); 
@@ -13,7 +17,7 @@ btn.addEventListener("click", function(event) {
     var doj = document.getElementById("doj").value; 
 
     //validate dates
-    if (isValidDate(dob) && isValidDate(doj) && firstName !== null && lastName !== null) {
+    if (isValidDate(dob) && isValidDate(doj) && firstName !== '' && lastName !== '') {
     //create new row
     const newRow = document.createElement('tr');
     //create new cell elements 
@@ -89,10 +93,14 @@ btn.addEventListener("click", function(event) {
       const b = row.querySelector('td:nth-child(2)'); 
       const c = row.querySelector('td:nth-child(3)');
       const d = row.querySelector('td:nth-child(4)');
+      if (a !== '' && b !== '' && isValidDate(c) && isValidDate(d)) {
       a.contentEditable = false;
       b.contentEditable = false;
       c.contentEditable = false;
-      d.contentEditable = false;     
+      d.contentEditable = false;
+      } else {
+        alert ('When editing, names cannot be null and dates must be in MM/DD/YYYY format.')
+      }     
     })
 } else {
     alert('Names cannot be null and dates must be in MM/DD/YYYY format.') //from initial form fill out
