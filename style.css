@@ -1,3 +1,30 @@
 table, th, td {
-    border: 1px solid black; 
+    border: 1px solid black;  
+    width: fit-content;
 }
+
+th, td {
+    padding: 20px; 
+}
+
+.save-btn {
+    background-color: #DE8264;
+}
+
+.delete-btn {
+    background-color: #FAA771;
+    margin: 5px; 
+}
+
+.edit-btn {
+    background-color: #DE8264;
+    margin: 5px; 
+}
+
+input {
+    background: rgba(245, 135, 123, 0.5);
+    border-color: white; 
+    box-shadow: 0px 4px 4px rgba(250, 113, 203, 0.25);
+}
+
+

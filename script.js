@@ -13,7 +13,7 @@ btn.addEventListener("click", function(event) {
     var doj = document.getElementById("doj").value; 
 
     //validate dates
-    if (isValidDate(dob) && isValidDate(doj)) {
+    if (isValidDate(dob) && isValidDate(doj) && firstName !== null && lastName !== null) {
     //create new row
     const newRow = document.createElement('tr');
     //create new cell elements 
@@ -33,10 +33,14 @@ btn.addEventListener("click", function(event) {
     newRow.appendChild(dojCell); 
 
     const deleteButton = document.createElement('button'); 
+    deleteButton.classList.add('btn');
+    deleteButton.classList.add('delete-btn');
     deleteButton.textContent = 'Delete'; 
     newRow.appendChild(deleteButton); 
 
     const editButton = document.createElement('button');
+    editButton.classList.add('btn');
+    editButton.classList.add('edit-btn');
     editButton.textContent = 'Edit';
     newRow.appendChild(editButton);
 
@@ -64,17 +68,21 @@ btn.addEventListener("click", function(event) {
         const newD = prompt ('Edit DOJ: ', d); 
         //Validate dates 
         if (isValidDate(newC) && isValidDate(newD)) {
-        // Update the cells in the row with the new values
-        row.querySelector('td:nth-child(1)').textContent = newA;
-        row.querySelector('td:nth-child(2)').textContent = newB;
-        row.querySelector('td:nth-child(3)').textContent = newC;
-        row.querySelector('td:nth-child(4)').textContent = newD;
+          if (newA !== null && newB !== null) {
+          // Update the cells in the row with the new values
+          row.querySelector('td:nth-child(1)').textContent = newA;
+          row.querySelector('td:nth-child(2)').textContent = newB;
+          row.querySelector('td:nth-child(3)').textContent = newC;
+          row.querySelector('td:nth-child(4)').textContent = newD;
+          } else {
+            alert('Name cannot be blank.')
+          }
         } else {
             alert('Please edit your dates in the following format MM/DD/YYYY')
         }
     } )
 } else {
-    alert('Please enter a valid DOB and/or DOJ date!')
+    alert('Names cannot be null and dates must be in MM/DD/YYYY format.')
 }
 });
 
