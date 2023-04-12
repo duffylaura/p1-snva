@@ -6,7 +6,3 @@ Created using HTML, CSS, Bootstrap, JavaScript, and JQuery.
 
 
 
-
-window.addEventListener("load", (event) => {
-  console.log("page is fully loaded");
-});
