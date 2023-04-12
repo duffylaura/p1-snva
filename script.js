@@ -89,11 +89,12 @@ btn.addEventListener("click", function(event) {
     saveButton.addEventListener("click", function(event) {
       const row = editButton.parentNode.parentNode; 
       //get values from cells // store in variables
-      const a = row.querySelector('td:nth-child(1)'); 
+      const a = row.querySelector('td:nth-child(1)'); //grabbing hold of the HTML code not the value // .value isn't working either 
       const b = row.querySelector('td:nth-child(2)'); 
       const c = row.querySelector('td:nth-child(3)');
       const d = row.querySelector('td:nth-child(4)');
-      if (a !== '' && b !== '' && isValidDate(c) && isValidDate(d)) {
+
+      if ((a && b) !== '' && isValidDate(c) && isValidDate(d)) {
       a.contentEditable = false;
       b.contentEditable = false;
       c.contentEditable = false;
