@@ -3,10 +3,10 @@
 const table = document.getElementById("table"); 
 const btn = document.getElementById("btn");
 
-$( function() {
-  $( "#dob" ).datepicker();
+window.addEventListener("load", (event) => {
+  $( "#dob" ).datepicker(); 
   $("#doj").datepicker(); 
-} );
+}); 
 
 btn.addEventListener("click", function(event) {
     event.preventDefault(); 
@@ -17,7 +17,7 @@ btn.addEventListener("click", function(event) {
     var doj = document.getElementById("doj").value; 
 
     //validate dates
-    if (isValidDate(dob) && isValidDate(doj) && firstName !== '' && lastName !== '') {
+    if (isValidDate(dob) && isValidDate(doj) && dojIsValid(dob, doj) && firstName !== undefined && lastName !== undefined) {
     //create new row
     const newRow = document.createElement('tr');
     //create new cell elements 
@@ -103,7 +103,7 @@ btn.addEventListener("click", function(event) {
       }     
     })
 } else {
-    alert('Names cannot be null and dates must be in MM/DD/YYYY format.') //from initial form fill out
+    alert('Names cannot be null; dates must be in MM/DD/YYYY format; DOJ must be at least 18 years after DOB.') //from initial form fill out
 }
 });
 
@@ -129,3 +129,19 @@ function isValidDate(dateString) {
     return true;
 };
 
+function dojIsValid () {
+  var dobStr = $("#dob").val(); 
+  var dobParts = dobStr.split("/"); 
+  var dobDate = new Date (dobParts[2], dobParts[1], dobParts[0]); 
+    console.log(dobDate); 
+  var dobEighteenYearsLater = new Date(dobDate.getFullYear() + 18, dobDate.getMonth(), dobDate.getDate());
+    console.log(dobEighteenYearsLater); 
+  var dojStr = $("#doj").val(); 
+  var dojParts = dojStr.split("/");
+  var dojDate = new Date (dojParts[2], dojParts[1], dojParts[0]); 
+  if (dojDate >= dobEighteenYearsLater) {
+    return true
+  } else {
+    return false; 
+  }
+}; 
